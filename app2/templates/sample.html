@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <title>Start record</title>
+</head>
+<body>
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="data_obj">
+            <button>Submit</button>
+
+        </form>
+    </div>
+    <div class="container">
+        <input type="text" name="subject" id="subject" placeholder="Enter Subject"><br>
+        <input type="button" value="Record Screen Issue" onclick="start()">
+            
+    </div>
+                
+    <script>
+        function start() {
+        var subject = document.getElementById('subject').value
+
+        $.ajax({
+            headers: { "X-CSRFToken": "{{csrf_token}}" },
+            type: 'POST',
+            url: "/start",
+            data: {
+                'data_obj': subject
+            },
+            success: function(response) {
+                
+
+            }
+
+        })
+    }
+    </script>
+</body>
+</html>
